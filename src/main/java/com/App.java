@@ -1,5 +1,6 @@
 package com;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.hibernate.Session;
@@ -60,9 +61,61 @@ public class App {
 		session.close();
 	}
 
+	void getAllUsers() {
+		Session session = sf.openSession();
+
+		List<UserBean> users = session.createQuery("from UserBean", UserBean.class).getResultList();
+
+		for (UserBean u : users) {
+			System.out.println(u.getUserId() + " " + u.getFirstName() + " " + u.getEmail());
+		}
+		session.close();
+	}
+
+	UserBean getDataByUserId(int userId) {
+		Session session = sf.openSession();
+
+		UserBean user = session.get(UserBean.class, userId);
+		session.close();
+		return user;
+	}
+
+	void updateUser() {
+		System.out.println("Enter userId for Update records?");
+		int userId = scr.nextInt();
+		int choice = -1;
+		UserBean user = getDataByUserId(userId);
+
+		System.out.println("FirstName : " + user.getFirstName());
+		System.out.println("Press 1 For update firstname?");
+		choice = scr.nextInt();
+		if (choice == 1) {
+			System.out.println("Enter new FirstName");
+			user.setFirstName(scr.next());
+		}
+		System.out.println("Email : "+user.getEmail());
+		System.out.println("Press 1 For update Email?");
+		choice = scr.nextInt();
+		if (choice == 1) {
+			System.out.println("Enter new Email");
+			user.setEmail(scr.next());
+		}
+
+		Session session = sf.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(user);//userId 
+		tx.commit();
+		session.close();
+		
+	}
+	
+
 	public static void main(String[] args) {
 		App app = new App();
-		app.addUser();
+		// app.addUser();
 		//
+		app.getAllUsers();
+		app.updateUser();
+		app.getAllUsers();
 	}
 }

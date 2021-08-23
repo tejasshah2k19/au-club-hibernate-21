@@ -65,7 +65,8 @@ public class App {
 		Session session = sf.openSession();
 
 		List<UserBean> users = session.createQuery("from UserBean", UserBean.class).getResultList();
-
+							//session.createQuery("===="); 
+		
 		for (UserBean u : users) {
 			System.out.println(u.getUserId() + " " + u.getFirstName() + " " + u.getEmail());
 		}

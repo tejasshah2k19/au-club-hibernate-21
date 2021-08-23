@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+
+	<class name="com.bean.onetoone.EmployeeBean" table="employee">
+
+		<id name="employeeId">
+			<generator class="increment"></generator>
+		</id>
+
+		<property name="name" column="empName" length="25"></property>
+		<property name="email"></property>
+		<property name="password"></property>
+
+		<one-to-one name="employeeDetail" cascade="all"></one-to-one>
+	</class>
+
+
+	<class name="com.bean.onetoone.EmployeeDetailBean" table="employeeDetail">
+		<id name="empDetailBeanId">
+			<generator class="foreign">
+				<param name="property">employee</param>
+			</generator>
+		</id>
+		<property name="address"></property>
+		<property name="doj"></property>
+		<property name="dob"></property>
+
+		<one-to-one name="employee"></one-to-one>
+
+	</class>
+
+
+
+
+</hibernate-mapping>

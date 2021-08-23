@@ -21,7 +21,7 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 
 		<mapping resource="user.hbm.xml" />
-
+		<mapping resource="onetoone.xml"/> 
 	</session-factory>
 
 </hibernate-configuration>  

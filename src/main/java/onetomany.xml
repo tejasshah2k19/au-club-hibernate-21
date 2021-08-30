@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+
+	<class name="com.bean.onetomany.StudentBean" table="student">
+
+		<id name="studentId">
+			<generator class="increment"></generator>
+		</id>
+		<property name="name"></property>
+		<property name="colgName"></property>
+
+
+		<list name="results" cascade="all">
+
+			<key column="studentId"></key>
+			<list-index column="res_stud_index"></list-index>
+			<one-to-many class="com.bean.onetomany.ResultBean" />
+		</list>
+
+
+	</class>
+
+	<class name="com.bean.onetomany.ResultBean" table="result">
+		<id name="resultId">
+			<generator class="increment"></generator>
+		</id>
+		<property name="examTitle"></property>
+		<property name="perc"></property>
+	</class>
+
+</hibernate-mapping>

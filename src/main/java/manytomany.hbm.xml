@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+
+	<class name="com.bean.manytomany.SportsBean" table="sports">
+
+		<id name="sportsId">
+			<generator class="increment"></generator>
+		</id>
+		<property name="name"></property>
+
+		<set name="players" cascade="all" table="sports_player"
+			lazy="true" fetch="select">
+			<key>
+				<column name="sportsId"></column>
+			</key>
+			<many-to-many class="com.bean.manytomany.PlayerBean">
+				<column name="playerId"></column>
+			</many-to-many>
+		</set>
+
+
+	</class>
+
+	<class name="com.bean.manytomany.PlayerBean" table="player">
+		<id name="playerId">
+			<generator class="increment"></generator>
+		</id>
+		<property name="name"></property>
+
+		<set name="sports" table="sports_player" fetch="select" >
+			<key>
+				<column name="playerId"></column>
+			</key>
+			<many-to-many class="com.bean.manytomany.SportsBean">
+				<column name="sportsId"></column>
+			</many-to-many>	
+		</set>
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,52 @@
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+int companyId;
+UDID companyId; 
+
+
+AUTO => {default} => {sequence } => {table} 
+IDENTITY { } => we can't perform batch update 
+SEQUENCE { use } 
+TABLE { avoid } 
+----------------------------
+hibernate 5 
+1)numeric value {auto,identity,sequence,table}
+2)UUID {UDIDGenerator} 
+
+hjhk78fhn-67hg-67hh-6656-d8fb106f391e
+d7cd23b8-991c-470f-ac63-d8fb106f391e
+  
+ip + timestamp 
+----------------------------
+lazy="true" fetch="select"
+
+customer 
+
+orders
+
+Customer c = session.get(Customer.class,90);
+ 
+@Fetch(value = FetchMode.SELECT)
+@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+
+fetch="select"   lazy="true|false"
+fetch="join"  --> lazy=false | eager
+
+
+----------------------------
+custom generator*** 
+AP000000001
+AP000000002
+AP000000003
+AP000000004
+----------------------------
+
+
+
+
+
+
+
+
+
+	

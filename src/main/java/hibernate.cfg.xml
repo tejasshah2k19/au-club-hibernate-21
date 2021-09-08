@@ -34,6 +34,10 @@
 		<mapping  class="com.bean.annotation.onetomany.ProductBean"/>
 		
 		
+		<mapping  class="com.bean.annotation.manytomany.DeveloperBean"/>
+		<mapping  class="com.bean.annotation.manytomany.ProjectBean"/>
+		
+		
 		 
 
 
